@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "327571911324",
+    "project_id": "si-kos",
+    "storage_bucket": "si-kos.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327571911324:android:b4b7b42f467e07f983f359",
+        "android_client_info": {
+          "package_name": "com.kelompok5.sikos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU-gExfvMNXC9_5yeiUqR0yOq6PUuYIZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
