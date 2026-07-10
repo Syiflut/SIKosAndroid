@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Info Transaksi -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvRiwayatNamaKos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kos Alinda"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"/>
+
+            <TextView
+                android:id="@+id/tvRiwayatTanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pembayaran: 15 Mar 2026"
+                android:textSize="12sp"
+                android:textColor="#777777"
+                android:layout_marginTop="2dp"/>
+
+            <TextView
+                android:id="@+id/tvRiwayatTotalHarga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: Rp 1.950.000 (3 Bulan)"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="6dp"/>
+        </LinearLayout>
+
+        <!-- Tag Status (Lunas / Menunggu / Gagal) -->
+        <TextView
+            android:id="@+id/tvStatusPembayaran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lunas"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:background="#FFD1DC"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
