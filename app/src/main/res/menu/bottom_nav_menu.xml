@@ -11,6 +11,12 @@
         android:icon="@android:drawable/ic_menu_recent_history"
         android:title="Riwayat" />
 
+    <!-- TAMBAHAN: Menu Chat diletakkan sebelum Profil tanpa mengubah kode bawaan -->
+    <item
+        android:id="@+id/menu_chat"
+        android:icon="@android:drawable/stat_notify_chat"
+        android:title="Chat" />
+
     <item
         android:id="@+id/menu_profil"
         android:icon="@android:drawable/ic_menu_myplaces"
