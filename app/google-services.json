@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "327571911324",
-    "project_id": "si-kos",
-    "storage_bucket": "si-kos.firebasestorage.app"
+    "project_number": "652552658522",
+    "project_id": "sikosandroid",
+    "storage_bucket": "sikosandroid.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:327571911324:android:b4b7b42f467e07f983f359",
+        "mobilesdk_app_id": "1:652552658522:android:9c04d22ac7bb2e321b0263",
         "android_client_info": {
           "package_name": "com.kelompok5.sikos"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAU-gExfvMNXC9_5yeiUqR0yOq6PUuYIZA"
+          "current_key": "AIzaSyCq-KyFt7CHiXshaN8UhJi6wG5l6lfop2Q"
         }
       ],
       "services": {

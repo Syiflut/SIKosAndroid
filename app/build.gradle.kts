@@ -48,11 +48,11 @@ dependencies {
 
         // Room
         implementation("androidx.room:room-runtime:2.6.1")
-        kapt("androidx.room:room-compiler:2.6.1")
+
 
         // Hilt DI
         implementation("com.google.dagger:hilt-android:2.51.1")
-        kapt("com.google.dagger:hilt-compiler:2.51.1")
+
 
         // Navigation
         implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
@@ -82,4 +82,3 @@ dependencies {
     ksp(libs.hilt.compiler)
 }
 
-fun kapt(string: String) {}
