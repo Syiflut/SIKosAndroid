@@ -8,10 +8,12 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="SiKosAndroid"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SIKosAndroid">
+
+        <!-- 1. Halaman Login (Awal Aplikasi Dibuka) -->
         <activity android:name=".feature_auth.LoginActivity"
             android:exported="true">
             <meta-data
@@ -29,11 +31,22 @@
             <meta-data
                 android:name="android.support.PARENT_AS_ROOT"
                 android:value="true" />
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-    </application>
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 2. Halaman Formulir Pengajuan Sewa -->
+        <activity
+            android:name=".ui.BookingKosActivity"
+            android:exported="false" />
+
+        <!-- 3. Halaman Utama Navigasi Bawah (Dashboard, Riwayat, Profil) -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false" />
+
+    </application>
 </manifest>

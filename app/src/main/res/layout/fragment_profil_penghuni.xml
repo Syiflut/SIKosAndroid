@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center_horizontal">
+
+        <!-- Foto Profil Bulat / Avatar Imut -->
+        <ImageView
+            android:id="@+id/ivFotoProfil"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/pastel_blue"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:padding="20dp" />
+
+        <!-- Nama Penghuni -->
+        <TextView
+            android:id="@+id/tvNamaProfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fitri Liyani"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginTop="12dp" />
+
+        <!-- Status Akun -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Akun Penghuni Kos"
+            android:textSize="14sp"
+            android:textColor="@color/pastel_blue_dark"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginVertical="24dp" />
+
+        <!-- Form Ubah Password -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ganti Kata Sandi"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Input Password Lama -->
+        <EditText
+            android:id="@+id/etPasswordLama"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Masukkan Password Lama"
+            android:inputType="textPassword"
+            android:background="@color/pastel_blue"
+            android:paddingHorizontal="16dp"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Input Password Baru -->
+        <EditText
+            android:id="@+id/etPasswordBaru"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Masukkan Password Baru"
+            android:inputType="textPassword"
+            android:background="@color/pastel_blue"
+            android:paddingHorizontal="16dp"
+            android:textSize="14sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Tombol Simpan Perubahan -->
+        <Button
+            android:id="@+id/btnSimpanPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Simpan Password Baru"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/pastel_pink" />
+
+    </LinearLayout>
+</ScrollView>

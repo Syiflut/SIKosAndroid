@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Foto Kamar Kos -->
+        <ImageView
+            android:id="@+id/ivFotoKamar"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:background="@color/pastel_pink" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Tag Tipe Kos (Campur / Putra / Putri) -->
+            <TextView
+                android:id="@+id/tvTipeKos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Campur"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:background="@color/pastel_blue_dark"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp" />
+
+            <!-- Nama Kos & Kamar -->
+            <TextView
+                android:id="@+id/tvNamaKos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Kos Alinda - Tipe Kamar C3"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="6dp" />
+
+            <!-- Lokasi / Fasilitas Ringkas -->
+            <TextView
+                android:id="@+id/tvLokasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Garut · AC · WiFi · Kamar Mandi Dalam"
+                android:textSize="12sp"
+                android:textColor="#777777"
+                android:layout_marginTop="2dp" />
+
+            <!-- Harga Per Bulan -->
+            <TextView
+                android:id="@+id/tvHargaKos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rp 650.000 / bulan"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="8dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
