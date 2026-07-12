@@ -7,7 +7,7 @@ import java.util.UUID
 
 class ChatRepository {
     private val db = FirebaseDatabase.getInstance()
-    private val chatRef = db.getReference("chat")
+    private val chatRef = db.getReference("message")
     private val storageRef = FirebaseStorage.getInstance().reference
 
     // 1. FUNGSI KIRIM CHAT TEXT - Buat Poin 1 Realtime Chat

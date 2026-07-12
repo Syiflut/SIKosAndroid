@@ -1,79 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Daftar Akun"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/etNama"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nama Lengkap"/>
-
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"/>
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"/>
-
-        <RadioGroup
-            android:id="@+id/rgRole"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/rbPenghuni"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Penghuni"/>
-
-            <RadioButton
-                android:id="@+id/rbPemilik"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pemilik"/>
-
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Daftar"/>
-
-        <TextView
-            android:id="@+id/tvLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Sudah punya akun? Login"/>
-
-    </LinearLayout>
-
-</ScrollView>
-=======
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -201,4 +127,3 @@
         android:padding="8dp"/>
 
 </LinearLayout>
->>>>>>> a2782578aacf9e806d8d9a107bd1e341c69bc1bd
