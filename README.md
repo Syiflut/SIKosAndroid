@@ -4,11 +4,17 @@ Sistem Informasi Manajemen dan Pemesanan Kamar Kos berbasis mobile Android. Apli
 
 ---
 
-## 👥 Anggota Kelompok 5
-* **Alinda Aulia** - 24552011256 - 
-* **Syifa Lutfia** - 24552011016 - *Backend & Database Developer* (Auth Feature, Search Filter, & MVVM Architecture)
-* **Fitri Liyani** - 24552011166 - *Frontend Developer & Documentation Lead* (Dashboard, Realtime Room Chat, Manifest Integration, & Report)
-* * **Valen Rafael** - 24552011034 - 
+## 👥 Anggota Kelompok 5 & Pembagian Tugas
+
+* **Syifa Lutfia** - 24552011016 - *Project Leader & Backend Developer*
+  * Tugas: Dashboard Pemilik, CRUD Kamar, ACC Pengajuan Sewa, dan Dokumentasi Laporan Utama.
+* **Fitri Liyani** - 24552011166 - *Frontend Developer*
+  * Tugas: UDAH SELESAI (Semua UI Dasar Aplikasi).
+* **Alinda Aulia** - 24552011256 - *Fullstack Developer*
+  * Tugas: Realtime Chat, Seluruh Flow Payment, Firebase Cloud Messaging (FCM), dan Cetak PDF.
+* **Valen Rafael** - 24552011034 - *Firebase Integration Specialist*
+  * Tugas: Menyambungkan Autentikasi ke Firebase, Lupa Password, dan Rules Authentication.
+  * 
 ---
 
 ## 🎥 Video Penjelasan Proyek
