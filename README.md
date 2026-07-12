@@ -14,7 +14,6 @@ Sistem Informasi Manajemen dan Pemesanan Kamar Kos berbasis mobile Android. Apli
   * Tugas: Realtime Chat, Seluruh Flow Payment, Firebase Cloud Messaging (FCM), dan Cetak PDF.
 * **Valen Rafael** - 24552011034 - *Firebase Integration Specialist*
   * Tugas: Menyambungkan Autentikasi ke Firebase, Lupa Password, dan Rules Authentication.
-  * 
 ---
 
 ## 🎥 Video Penjelasan Proyek
