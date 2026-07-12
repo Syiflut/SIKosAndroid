@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -72,3 +73,132 @@
     </LinearLayout>
 
 </ScrollView>
+=======
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:gravity="center"
+    android:background="#FAF8F6">
+
+    <!-- Judul Halaman -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buat Akun Baru"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#7BB3FF"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daftar untuk mulai mengelola kosan"
+        android:textSize="14sp"
+        android:textColor="#A0A0A0"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Pilihan Role Daftar -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="Daftar sebagai:"
+        android:textSize="14sp"
+        android:textColor="#777777"
+        android:layout_marginBottom="8dp"/>
+
+    <RadioGroup
+        android:id="@+id/rgRoleRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/rbPenghuniRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penghuni"
+            android:checked="true"
+            android:buttonTint="#FFB6C1"
+            android:textColor="#555555"
+            android:layout_marginEnd="24dp"/>
+
+        <RadioButton
+            android:id="@+id/rbPemilikRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pemilik Kos"
+            android:buttonTint="#7BB3FF"
+            android:textColor="#555555"/>
+    </RadioGroup>
+
+    <!-- Kolom Nama Lengkap -->
+    <EditText
+        android:id="@+id/etNamaRegister"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:hint="Nama Lengkap"
+        android:inputType="textPersonName"
+        android:paddingHorizontal="16dp"
+        android:textSize="15sp"
+        android:background="@android:drawable/edit_text"
+        android:backgroundTint="#F0F4F8"/>
+
+    <!-- Kolom Email -->
+    <EditText
+        android:id="@+id/etEmailRegister"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="16dp"
+        android:paddingHorizontal="16dp"
+        android:textSize="15sp"
+        android:background="@android:drawable/edit_text"
+        android:backgroundTint="#F0F4F8"/>
+
+    <!-- Kolom Password -->
+    <EditText
+        android:id="@+id/etPasswordRegister"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp"
+        android:paddingHorizontal="16dp"
+        android:textSize="15sp"
+        android:background="@android:drawable/edit_text"
+        android:backgroundTint="#F0F4F8"/>
+
+    <!-- Tombol Daftar dengan Pink Pastel Muted -->
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Daftar Akun"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#FFB6C1"
+        app:cornerRadius="12dp"/>
+
+    <!-- Tombol Kembali ke Login -->
+    <TextView
+        android:id="@+id/tvKembaliLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sudah punya akun? Login di sini"
+        android:textSize="14sp"
+        android:textColor="#7BB3FF"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:padding="8dp"/>
+
+</LinearLayout>
+>>>>>>> a2782578aacf9e806d8d9a107bd1e341c69bc1bd

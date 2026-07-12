@@ -94,5 +94,17 @@
             android:textColor="#FFFFFF"
             android:backgroundTint="@color/pastel_pink" />
 
+        <!-- TAMBAHAN: Tombol Keluar Akun (Logout) tanpa merubah layout bawaan -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Keluar Akun"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/pastel_pink"
+            android:layout_marginTop="16dp" />
+
     </LinearLayout>
 </ScrollView>
