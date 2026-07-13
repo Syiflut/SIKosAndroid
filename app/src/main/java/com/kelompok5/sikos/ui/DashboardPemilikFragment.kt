@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.kelompok5.sikos.R
 
 class DashboardPemilikFragment : Fragment() {
@@ -61,12 +63,44 @@ class DashboardPemilikFragment : Fragment() {
             Toast.makeText(requireContext(), "Membuka Galeri HP...", Toast.LENGTH_SHORT).show()
         }
 
+        // Import tambahan di bagian paling atas file jika diperlukan:
+// import com.google.firebase.auth.FirebaseAuth
+// import com.google.firebase.database.FirebaseDatabase
+
         btnSimpanKos.setOnClickListener {
             val namaKos = etNamaKos.text.toString().trim()
             val hargaKos = etHargaKos.text.toString().trim()
 
             if (namaKos.isNotEmpty() && hargaKos.isNotEmpty()) {
-                Toast.makeText(requireContext(), "Menyimpan Iklan: $namaKos | Rp $hargaKos", Toast.LENGTH_LONG).show()
+                // 1. Ambil ID unik Pemilik Kos yang sedang login saat ini
+                val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+
+                if (currentUserUid != null) {
+                    // 2. Referensikan cabang baru di Firebase Database, misal namanya "kos_properties"
+                    val databaseRef = FirebaseDatabase.getInstance().getReference("kos_properties")
+
+                    // 3. Buat struktur data object yang akan dikirim ke database
+                    val dataKos = hashMapOf(
+                        "ownerUid" to currentUserUid,
+                        "namaKos" to namaKos,
+                        "hargaKos" to hargaKos,
+                        "status" to "Tersedia"
+                    )
+
+                    // 4. Push data ke Firebase Realtime Database
+                    databaseRef.child(currentUserUid).setValue(dataKos)
+                        .addOnSuccessListener {
+                            Toast.makeText(requireContext(), "Berhasil mengiklankan kos: $namaKos!", Toast.LENGTH_LONG).show()
+                            // Opsional: Bersihkan form setelah sukses disimpan
+                            etNamaKos.text.clear()
+                            etHargaKos.text.clear()
+                        }
+                        .addOnFailureListener { error ->
+                            Toast.makeText(requireContext(), "Gagal menyimpan ke database: ${error.message}", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    Toast.makeText(requireContext(), "Sesi login berakhir, silakan login ulang.", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(requireContext(), "Semua data form kamar wajib diisi!", Toast.LENGTH_SHORT).show()
             }
@@ -77,7 +111,15 @@ class DashboardPemilikFragment : Fragment() {
         }
 
         menuBroadcastChat.setOnClickListener {
-            Toast.makeText(requireContext(), "Mengirim Pesan Broadcast Massal", Toast.LENGTH_SHORT).show()
+            // 1. Instansiasi fragment chat pemilik yang sudah kamu buat di folder ui
+            val fragmentTujuan = ChatPemilikFragment()
+
+            // 2. Lakukan transaksi fragment untuk menumpuk halaman saat ini
+            // CATATAN: Ganti 'R.id.fragment_container' dengan ID container yang ada di activity_main.xml kelompokmu
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragmentTujuan)
+                .addToBackStack(null) // Fungsi agar ketika ditekan tombol back, kembali ke dashboard (tidak keluar aplikasi)
+                .commit()
         }
 
         menuUlasanPenghuni.setOnClickListener {
