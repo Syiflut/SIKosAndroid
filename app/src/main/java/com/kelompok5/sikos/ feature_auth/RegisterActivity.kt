@@ -48,9 +48,9 @@ class RegisterActivity : AppCompatActivity() {
                             userMap["email"] = email
                             userMap["role"] = roleInput
 
-                            // 3. Simpan data ke node "users" -> "UID_USER" di Realtime Database
+                            // 3. Simpan data ke node "pengguna" -> "UID_USER" di Realtime Database (Disesuaikan dengan Firebase Baru)
                             val dbRef = com.google.firebase.database.FirebaseDatabase.getInstance()
-                                .getReference("users").child(uid)
+                                .getReference("pengguna").child(uid)
 
                             dbRef.setValue(userMap)
                                 .addOnSuccessListener {

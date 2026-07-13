@@ -82,9 +82,9 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             val uid = mAuth.currentUser?.uid ?: ""
 
-                            // 2. Ambil data detail user dari Firebase Realtime Database berdasarkan UID
+                            // 2. Ambil data detail user dari Firebase Realtime Database berdasarkan UID (Disesuaikan dengan Firebase Baru)
                             val dbRef = com.google.firebase.database.FirebaseDatabase.getInstance()
-                                .getReference("users").child(uid)
+                                .getReference("pengguna").child(uid)
 
                             dbRef.get().addOnSuccessListener { snapshot ->
                                 if (snapshot.exists()) {
