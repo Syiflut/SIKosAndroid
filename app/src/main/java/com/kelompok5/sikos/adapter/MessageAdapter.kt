@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.kelompok5.sikos.R
 import com.kelompok5.sikos.model.Chat
 import java.text.SimpleDateFormat
@@ -14,9 +15,13 @@ class MessageAdapter(private val listPesan: List<Chat>) : RecyclerView.Adapter<R
 
     private val VIEW_TYPE_MINE = 1
     private val VIEW_TYPE_OTHER = 2
-    private val myUserId = "user123" // Nanti ganti FirebaseAuth.getInstance().currentUser?.uid
+
+    // PERBAIKAN: Langsung mengambil UID asli dari user yang sedang login di Firebase
+    private val myUserId: String
+        get() = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
     override fun getItemViewType(position: Int): Int {
+        // Membandingkan senderId dari Firebase dengan UID asli kamu
         return if (listPesan[position].senderId == myUserId) VIEW_TYPE_MINE else VIEW_TYPE_OTHER
     }
 

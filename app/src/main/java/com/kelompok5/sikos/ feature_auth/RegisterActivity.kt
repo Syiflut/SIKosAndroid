@@ -3,45 +3,71 @@ package com.kelompok5.sikos.feature_auth
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.kelompok5.sikos.R
 
 class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var etEmailDaftar: EditText
+    private lateinit var etPasswordDaftar: EditText
+    private lateinit var btnDaftar: Button
+    private lateinit var tvKembaliLogin: TextView // Sudah disamakan dengan XML
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val etNama = findViewById<EditText>(R.id.etNamaRegister)
-        val etEmail = findViewById<EditText>(R.id.etEmailRegister)
-        val etPassword = findViewById<EditText>(R.id.etPasswordRegister)
-        val rgRole = findViewById<RadioGroup>(R.id.rgRoleRegister)
-        val btnRegister = findViewById<Button>(R.id.btnRegister)
-        val tvKembaliLogin = findViewById<TextView>(R.id.tvKembaliLogin)
+        auth = FirebaseAuth.getInstance()
 
-        btnRegister.setOnClickListener {
-            val nama = etNama.text.toString().trim()
-            val email = etEmail.text.toString().trim()
-            val password = etPassword.text.toString().trim()
+        // SINKRONISASI ID: Sudah pas 100% dengan activity_register.xml kamu
+        etEmailDaftar = findViewById(R.id.etEmailRegister)
+        etPasswordDaftar = findViewById(R.id.etPasswordRegister)
+        btnDaftar = findViewById(R.id.btnRegister)
+        tvKembaliLogin = findViewById(R.id.tvKembaliLogin)
 
-            val roleId = rgRole.checkedRadioButtonId
-            val role = if (roleId == R.id.rbPenghuniRegister) "Penghuni" else "Pemilik Kos"
-
-            if (nama.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                Toast.makeText(this, "Pendaftaran $role Berhasil!", Toast.LENGTH_LONG).show()
-                // Kembali ke halaman login setelah berhasil mendaftar
-                finish()
-            } else {
-                Toast.makeText(this, "Semua data wajib diisi!", Toast.LENGTH_SHORT).show()
-            }
+        btnDaftar.setOnClickListener {
+            prosesDaftarFirebase()
         }
 
-        // Jika user salah pencet dan mau balik ke halaman login
         tvKembaliLogin.setOnClickListener {
-            finish()
+            finish() // Menutup halaman register dan otomatis balik ke LoginActivity
         }
+    }
+
+    private fun prosesDaftarFirebase() {
+        val email = etEmailDaftar.text.toString().trim()
+        val password = etPasswordDaftar.text.toString().trim()
+
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Email dan Password tidak boleh kosong!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (password.length < 6) {
+            Toast.makeText(this, "Password minimal 6 karakter ya!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        btnDaftar.text = "Mendaftarkan..."
+        btnDaftar.isEnabled = false
+
+        // Mengirim data pendaftaran ke Firebase Authentication
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                btnDaftar.text = "Daftar Akun"
+                btnDaftar.isEnabled = true
+
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Akun berhasil dibuat! Silakan login.", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Gagal daftar: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                }
+            }
     }
 }
