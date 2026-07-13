@@ -68,23 +68,54 @@ class LoginActivity : AppCompatActivity() {
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
 
+            // Mengambil ID Radio Button yang dipilih saat login (Penghuni / Pemilik)
             val roleTerpilihId = rgRole.checkedRadioButtonId
-            val role = if (roleTerpilihId == R.id.rbPenghuni) "Penghuni" else "Pemilik Kos"
+            val roleInput = if (roleTerpilihId == R.id.rbPenghuni) "PENGHUNI" else "PEMILIK"
 
             if (email.isNotEmpty() && password.isNotEmpty() &&
                 tvErrorEmail.visibility == View.GONE && tvErrorPassword.visibility == View.GONE) {
 
-                Toast.makeText(this, "Berhasil masuk sebagai $role", Toast.LENGTH_SHORT).show()
+                // 1. Proses Login menggunakan Firebase Authentication
+                val mAuth = com.google.firebase.auth.FirebaseAuth.getInstance()
+                mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            val uid = mAuth.currentUser?.uid ?: ""
 
-                // Mengambil teks di depan '@' untuk nama dinamis
-                val namaPanggilan = email.substringBefore("@").replaceFirstChar { it.uppercase() }
+                            // 2. Ambil data detail user dari Firebase Realtime Database berdasarkan UID
+                            val dbRef = com.google.firebase.database.FirebaseDatabase.getInstance()
+                                .getReference("users").child(uid)
 
-                val intent = Intent(this, MainActivity::class.java)
-                // Menyisipkan data nama tanpa merusak parameter alur intent asli
-                intent.putExtra("EXTRA_NAMA", namaPanggilan)
+                            dbRef.get().addOnSuccessListener { snapshot ->
+                                if (snapshot.exists()) {
+                                    // Ambil data role asli yang terdaftar di database
+                                    val roleDatabase = snapshot.child("role").value.toString()
+                                    val namaAsli = snapshot.child("nama").value.toString()
 
-                startActivity(intent)
-                finish()
+                                    // 3. Validasi: Apakah Role yang dipilih saat login SAMA dengan yang ada di Database?
+                                    if (roleInput == roleDatabase) {
+                                        Toast.makeText(this, "Berhasil masuk sebagai $roleDatabase", Toast.LENGTH_SHORT).show()
+
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        intent.putExtra("EXTRA_NAMA", namaAsli)
+                                        intent.putExtra("EXTRA_ROLE", roleDatabase) // Mengirim "PENGHUNI" atau "PEMILIK"
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        // Jika memilih Pemilik tapi di DB terdaftarnya Penghuni
+                                        Toast.makeText(this, "Akun Anda terdaftar sebagai $roleDatabase, bukan $roleInput!", Toast.LENGTH_LONG).show()
+                                        mAuth.signOut()
+                                    }
+                                }
+                            }.addOnFailureListener {
+                                Toast.makeText(this, "Gagal mengambil data dari database", Toast.LENGTH_SHORT).show()
+                            }
+
+                        } else {
+                            // Jika email atau password salah
+                            Toast.makeText(this, "Login Gagal: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
             } else {
                 Toast.makeText(this, "Mohon periksa kembali inputan Anda!", Toast.LENGTH_SHORT).show()
             }

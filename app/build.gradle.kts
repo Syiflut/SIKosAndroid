@@ -40,6 +40,9 @@ android {
 }
 
 dependencies {
+    // Firebase Realtime Database & Authentication
+    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+    implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
         // Firebase
         implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
         implementation("com.google.firebase:firebase-auth")
@@ -49,6 +52,7 @@ dependencies {
         // Room
         implementation("androidx.room:room-runtime:2.6.1")
         kapt("androidx.room:room-compiler:2.6.1")
+
 
         // Hilt DI
         implementation("com.google.dagger:hilt-android:2.51.1")
