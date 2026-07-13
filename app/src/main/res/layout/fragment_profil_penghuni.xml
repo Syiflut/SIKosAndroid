@@ -1,110 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.tools.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="#F9FAFC"
+    android:padding="24dp">
 
+    <!-- Area Foto Profil -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
-        android:gravity="center_horizontal">
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp">
 
-        <!-- Foto Profil Bulat / Avatar Imut -->
-        <ImageView
-            android:id="@+id/ivFotoProfil"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/pastel_blue"
-            android:src="@android:drawable/ic_menu_gallery"
-            android:padding="20dp" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            app:cardCornerRadius="45dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/pastel_pink">
 
-        <!-- Nama Penghuni -->
-        <TextView
-            android:id="@+id/tvNamaProfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fitri Liyani"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginTop="12dp" />
-
-        <!-- Status Akun -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Akun Penghuni Kos"
-            android:textSize="14sp"
-            android:textColor="@color/pastel_blue_dark"
-            android:textStyle="bold"
-            android:layout_marginTop="4dp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E0E0E0"
-            android:layout_marginVertical="24dp" />
-
-        <!-- Form Ubah Password -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ganti Kata Sandi"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Input Password Lama -->
-        <EditText
-            android:id="@+id/etPasswordLama"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Masukkan Password Lama"
-            android:inputType="textPassword"
-            android:background="@color/pastel_blue"
-            android:paddingHorizontal="16dp"
-            android:textSize="14sp"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Input Password Baru -->
-        <EditText
-            android:id="@+id/etPasswordBaru"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Masukkan Password Baru"
-            android:inputType="textPassword"
-            android:background="@color/pastel_blue"
-            android:paddingHorizontal="16dp"
-            android:textSize="14sp"
-            android:layout_marginBottom="24dp" />
-
-        <!-- Tombol Simpan Perubahan -->
-        <Button
-            android:id="@+id/btnSimpanPassword"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Simpan Password Baru"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="@color/pastel_pink" />
-
-        <!-- TAMBAHAN: Tombol Keluar Akun (Logout) tanpa merubah layout bawaan -->
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Keluar Akun"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="@color/pastel_pink"
-            android:layout_marginTop="16dp" />
-
+            <ImageView
+                android:id="@+id/ivFotoProfil"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:padding="18dp"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:contentDescription="Foto Profil" />
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
-</ScrollView>
+
+    <!-- KELOMPOK INFORMASI AKUN -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#FFFFFF"
+        android:layout_marginBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Baris Nama Lengkap -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Lengkap"
+                android:textSize="12sp"
+                android:textColor="#999999"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/tvNamaProfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fitri Liyani"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="12dp"
+                tools:ignore="HardcodedText" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE" />
+
+            <!-- Baris Alamat Email -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alamat Email"
+                android:textSize="12sp"
+                android:textColor="#999999"
+                android:layout_marginTop="12dp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/tvEmailProfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="fitri.liyani@student.utbandung.ac.id"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginTop="2dp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- TAMBAHAN BARU: Daftar Kos Terfavorit / Dibintangi -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kos Yang Disukai"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/pastel_blue_dark"
+        android:layout_marginBottom="8dp"
+        tools:ignore="HardcodedText" />
+
+    <!-- RecyclerView akan mengambil sisa ruang tengah yang fleksibel -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvKosFavorit"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp"
+        tools:listitem="@layout/item_kamar_kos" />
+
+    <!-- TOMBOL KELUAR AKUN ATUR DI PALING BAWAH -->
+    <Button
+        android:id="@+id/btnKeluarAkun"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Keluar Akun"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:backgroundTint="@color/pastel_pink"
+        app:cornerRadius="12dp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

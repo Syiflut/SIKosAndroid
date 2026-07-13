@@ -6,5 +6,6 @@ data class Riwayat(
     val tanggalBayar: String = "",
     val totalHarga: Double = 0.0,
     val durasiBulan: Int = 1,
-    val statusPembayaran: String = "Menunggu" // Lunas, Menunggu, atau Gagal
+    val statusPembayaran: String = "Menunggu", // Lunas, Menunggu, atau Gagal
+    val buktiBayarUrl: String? = null
 )

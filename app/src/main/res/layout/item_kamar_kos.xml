@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.tools.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -13,14 +14,51 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Foto Kamar Kos -->
-        <ImageView
-            android:id="@+id/ivFotoKamar"
+        <!-- Bagian Foto & Ikon Aksi Atas -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="centerCrop"
-            android:src="@android:drawable/ic_menu_gallery"
-            android:background="@color/pastel_pink" />
+            android:layout_height="160dp">
+
+            <!-- Foto Kamar Kos -->
+            <ImageView
+                android:id="@+id/ivFotoKamar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:background="@color/pastel_pink"
+                android:contentDescription="Foto Kamar Kos"
+                tools:ignore="HardcodedText" />
+
+            <!-- IKON CHAT DI KANAN ATAS FOTO -->
+            <ImageView
+                android:id="@+id/ivChatKamar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="end|top"
+                android:layout_margin="12dp"
+                android:padding="6dp"
+                android:src="@android:drawable/stat_notify_chat"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:contentDescription="Chat Admin"
+                android:focusable="true"
+                android:clickable="true" />
+
+            <!-- IKON FAVORIT/BINTANG DI KIRI ATAS FOTO -->
+            <ImageView
+                android:id="@+id/ivLikeKamar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="start|top"
+                android:layout_margin="12dp"
+                android:padding="6dp"
+                android:src="@android:drawable/btn_star_big_off"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:contentDescription="Sukai Kos"
+                android:focusable="true"
+                android:clickable="true" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +66,7 @@
             android:orientation="vertical"
             android:padding="12dp">
 
-            <!-- Tag Tipe Kos (Campur / Putra / Putri) -->
+            <!-- Tag Tipe Kos -->
             <TextView
                 android:id="@+id/tvTipeKos"
                 android:layout_width="wrap_content"
@@ -39,9 +77,10 @@
                 android:textColor="#FFFFFF"
                 android:background="@color/pastel_blue_dark"
                 android:paddingHorizontal="8dp"
-                android:paddingVertical="2dp" />
+                android:paddingVertical="2dp"
+                tools:ignore="HardcodedText" />
 
-            <!-- Nama Kos & Kamar -->
+            <!-- Nama Kos -->
             <TextView
                 android:id="@+id/tvNamaKos"
                 android:layout_width="match_parent"
@@ -50,9 +89,10 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#333333"
-                android:layout_marginTop="6dp" />
+                android:layout_marginTop="6dp"
+                tools:ignore="HardcodedText" />
 
-            <!-- Lokasi / Fasilitas Ringkas -->
+            <!-- Lokasi -->
             <TextView
                 android:id="@+id/tvLokasi"
                 android:layout_width="match_parent"
@@ -60,9 +100,10 @@
                 android:text="Garut · AC · WiFi · Kamar Mandi Dalam"
                 android:textSize="12sp"
                 android:textColor="#777777"
-                android:layout_marginTop="2dp" />
+                android:layout_marginTop="2dp"
+                tools:ignore="HardcodedText" />
 
-            <!-- Harga Per Bulan -->
+            <!-- Harga -->
             <TextView
                 android:id="@+id/tvHargaKos"
                 android:layout_width="match_parent"
@@ -71,7 +112,8 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="#333333"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
     </LinearLayout>

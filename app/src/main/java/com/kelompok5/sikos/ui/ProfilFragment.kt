@@ -6,66 +6,59 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kelompok5.sikos.R
+import com.kelompok5.sikos.adapter.KamarAdapter
 import com.kelompok5.sikos.feature_auth.LoginActivity
+import com.kelompok5.sikos.model.FavoritManager
 
 class ProfilFragment : Fragment() {
 
-    private lateinit var etPasswordLama: EditText
-    private lateinit var etPasswordBaru: EditText
-    private lateinit var btnSimpanPassword: Button
-
-    // TAMBAHAN: Variabel global untuk menampung tombol logout baru
-    private lateinit var btnLogout: Button
+    private lateinit var tvNamaProfil: TextView
+    private lateinit var tvEmailProfil: TextView
+    private lateinit var rvKosFavorit: RecyclerView
+    private lateinit var btnKeluarAkun: Button
+    private lateinit var kamarAdapter: KamarAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Menyambungkan logika dengan layout fragment_profil_penghuni.xml
         val view = inflater.inflate(R.layout.fragment_profil_penghuni, container, false)
 
-        etPasswordLama = view.findViewById(R.id.etPasswordLama)
-        etPasswordBaru = view.findViewById(R.id.etPasswordBaru)
-        btnSimpanPassword = view.findViewById(R.id.btnSimpanPassword)
+        tvNamaProfil = view.findViewById(R.id.tvNamaProfil)
+        tvEmailProfil = view.findViewById(R.id.tvEmailProfil)
+        btnKeluarAkun = view.findViewById(R.id.btnKeluarAkun)
 
-        // TAMBAHAN: Menghubungkan variabel dengan ID button dari XML layout
-        btnLogout = view.findViewById(R.id.btnLogout)
+        rvKosFavorit = view.findViewById(R.id.rvKosFavorit)
+        rvKosFavorit.layoutManager = LinearLayoutManager(context)
 
-        btnSimpanPassword.setOnClickListener {
-            val passLama = etPasswordLama.text.toString().trim()
-            val passBaru = etPasswordBaru.text.toString().trim()
-
-            if (passLama.isEmpty() || passBaru.isEmpty()) {
-                Toast.makeText(context, "Semua kolom password harus diisi!", Toast.LENGTH_SHORT).show()
-            } else if (passBaru.length < 6) {
-                Toast.makeText(context, "Password baru minimal 6 karakter ya!", Toast.LENGTH_SHORT).show()
-            } else {
-                // Sisi ini nanti siap dihubungkan ke fitur Firebase Auth ganti password oleh teman timmu
-                Toast.makeText(context, "Kata sandi berhasil diperbarui!", Toast.LENGTH_SHORT).show()
-                etPasswordLama.text.clear()
-                etPasswordBaru.text.clear()
-            }
+        // SAMBUNGAN UTAMA: Mengambil data dari FavoritManager lokal
+        kamarAdapter = KamarAdapter(FavoritManager.listFavorit) { kamar ->
+            Toast.makeText(context, "Membuka detail ${kamar.namaKos}", Toast.LENGTH_SHORT).show()
         }
+        rvKosFavorit.adapter = kamarAdapter
 
-        // =======================================================
-        // TAMBAHAN: Logika ketika Tombol Keluar Akun (Logout) Ditekan
-        // =======================================================
-        btnLogout.setOnClickListener {
+        btnKeluarAkun.setOnClickListener {
             Toast.makeText(context, "Berhasil keluar akun", Toast.LENGTH_SHORT).show()
-
             val intent = Intent(activity, LoginActivity::class.java)
-
-            // Menghapus semua tumpukan halaman sebelumnya agar aman dan tidak bisa di-back
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
             startActivity(intent)
             activity?.finish()
         }
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Fungsi ini bertugas merefresh daftar secara otomatis setiap kali tab profil dibuka
+        if (::kamarAdapter.isInitialized) {
+            kamarAdapter.notifyDataSetChanged()
+        }
     }
 }
