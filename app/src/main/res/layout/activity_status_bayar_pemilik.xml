@@ -9,17 +9,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Riwayat Sewa &amp; Pembayaran"
+        android:text="Konfirmasi Pembayaran Penghuni"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#333333"
         android:layout_marginBottom="16dp"/>
 
     <TextView
-        android:id="@+id/tvRiwayatKosong"
+        android:id="@+id/tvBayarKosong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kamu belum memiliki riwayat pengajuan sewa."
+        android:text="Belum ada transaksi pembayaran yang perlu dikonfirmasi."
         android:gravity="center"
         android:textSize="14sp"
         android:textColor="#777777"
@@ -27,7 +27,7 @@
         android:layout_marginTop="40dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRiwayatSewa"
+        android:id="@+id/rvKonfirmasiBayar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

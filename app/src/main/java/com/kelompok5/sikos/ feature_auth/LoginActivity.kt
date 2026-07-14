@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        // SINKRONISASI ID: Sudah pas 100% dengan activity_login.xml kamu
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
@@ -30,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val tvErrorEmail = findViewById<TextView>(R.id.tvErrorEmail)
         val tvErrorPassword = findViewById<TextView>(R.id.tvErrorPassword)
 
+        // Validasi real-time untuk input Email
         etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -47,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+        // Validasi real-time untuk input Password
         etPassword.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -64,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
+        // Logika saat tombol Login ditekan
         btnLogin.setOnClickListener {
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
@@ -75,14 +79,22 @@ class LoginActivity : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty() &&
                 tvErrorEmail.visibility == View.GONE && tvErrorPassword.visibility == View.GONE) {
 
+                // Mengubah text tombol menjadi Loading agar user tahu proses sedang berjalan
+                btnLogin.text = "Loading..."
+                btnLogin.isEnabled = false
+
                 // 1. Proses Login menggunakan Firebase Authentication
                 val mAuth = com.google.firebase.auth.FirebaseAuth.getInstance()
                 mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
+                        // Kembalikan status tombol setelah proses selesai
+                        btnLogin.text = "Login"
+                        btnLogin.isEnabled = true
+
                         if (task.isSuccessful) {
                             val uid = mAuth.currentUser?.uid ?: ""
 
-                            // 2. Ambil data detail user dari Firebase Realtime Database berdasarkan UID (Disesuaikan dengan Firebase Baru)
+                            // 2. Ambil data detail user dari Firebase Realtime Database berdasarkan UID
                             val dbRef = com.google.firebase.database.FirebaseDatabase.getInstance()
                                 .getReference("pengguna").child(uid)
 
@@ -96,23 +108,26 @@ class LoginActivity : AppCompatActivity() {
                                     if (roleInput == roleDatabase) {
                                         Toast.makeText(this, "Berhasil masuk sebagai $roleDatabase", Toast.LENGTH_SHORT).show()
 
+                                        // Pindah ke Halaman Dashboard Utama (MainActivity)
                                         val intent = Intent(this, MainActivity::class.java)
                                         intent.putExtra("EXTRA_NAMA", namaAsli)
-                                        intent.putExtra("EXTRA_ROLE", roleDatabase) // Mengirim "PENGHUNI" atau "PEMILIK"
+                                        intent.putExtra("EXTRA_ROLE", roleDatabase)
                                         startActivity(intent)
                                         finish()
                                     } else {
-                                        // Jika memilih Pemilik tapi di DB terdaftarnya Penghuni
+                                        // Jika memilih Pemilik tapi di DB terdaftarnya Penghuni (atau sebaliknya)
                                         Toast.makeText(this, "Akun Anda terdaftar sebagai $roleDatabase, bukan $roleInput!", Toast.LENGTH_LONG).show()
                                         mAuth.signOut()
                                     }
+                                } else {
+                                    Toast.makeText(this, "Data pengguna tidak ditemukan di database baru.", Toast.LENGTH_SHORT).show()
                                 }
                             }.addOnFailureListener {
                                 Toast.makeText(this, "Gagal mengambil data dari database", Toast.LENGTH_SHORT).show()
                             }
 
                         } else {
-                            // Jika email atau password salah
+                            // Jika email atau password salah / tidak terdaftar di Firebase Auth yang baru
                             Toast.makeText(this, "Login Gagal: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                         }
                     }
@@ -121,6 +136,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        // Pindah ke halaman pendaftaran akun jika teks diklik
         tvDaftarAkun.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)

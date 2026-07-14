@@ -12,6 +12,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.kelompok5.sikos.BookingKosActivity
 import com.kelompok5.sikos.R
 import com.kelompok5.sikos.adapter.KamarAdapter
 import com.kelompok5.sikos.model.Kamar
@@ -20,9 +25,8 @@ class DashboardFragment : Fragment() {
 
     private lateinit var rvKamarKosong: RecyclerView
     private lateinit var kamarAdapter: KamarAdapter
-
-    // Tempat menampung data asli dari database nantinya
     private var listSemuaKos = ArrayList<Kamar>()
+    private val databaseRef = FirebaseDatabase.getInstance().getReference("kos_properties")
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -31,32 +35,21 @@ class DashboardFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard_penghuni, container, false)
 
-        // =====================================================================
-        // TAMBAHAN: Menampilkan Nama Pengguna secara Dinamis dari Halaman Login
-        // =====================================================================
         val namaDiterima = arguments?.getString("KEY_NAMA") ?: "Pengguna"
         val tvHaloUser = view.findViewById<TextView>(R.id.tvHaloUser)
         tvHaloUser.text = "Halo, $namaDiterima!"
 
-        // 1. Inisialisasi RecyclerView
         rvKamarKosong = view.findViewById(R.id.rvKamarKosong)
         rvKamarKosong.layoutManager = LinearLayoutManager(context)
 
-        // 2. Inisialisasi Adapter Sekali Saja di Awal (Siap pakai)
         kamarAdapter = KamarAdapter(ArrayList()) { kamar ->
             val intent = Intent(activity, BookingKosActivity::class.java)
             startActivity(intent)
         }
         rvKamarKosong.adapter = kamarAdapter
 
-        // =====================================================================
-        // TEMPAT LOAD DATA DATABASE (NANTI TINGGAL DIKONEKSIKAN KE VIEWMODEL)
-        // =====================================================================
-        loadDataDummyAwal()
+        ambilDataDariFirebase()
 
-        // ==========================================
-        // LOGIKA FILTER DENGAN POLA DATABASE
-        // ==========================================
         val semuaGambar = ArrayList<ImageView>()
         cariSemuaImageView(view, semuaGambar)
 
@@ -66,16 +59,16 @@ class DashboardFragment : Fragment() {
             btnCariOtomatis.setOnClickListener {
                 val filterDialog = FilterFragment { alamat, tipe, rating, minHarga, maxHarga ->
 
-                    // Proses menyaring dari list utama database (listSemuaKos)
                     val dataHasilFilter = listSemuaKos.filter { kamar ->
                         val cocokAlamat = alamat == "Semua Lokasi" || kamar.lokasi.contains(alamat, ignoreCase = true)
                         val cocokTipe = tipe == "Campur" || kamar.tipeKamar.equals(tipe, ignoreCase = true)
-                        val cocokHarga = kamar.hargaSewa >= minHarga && kamar.hargaSewa <= maxHarga
+
+                        val hargaDouble = kamar.hargaSewa.toDoubleOrNull() ?: 0.0
+                        val cocokHarga = hargaDouble >= minHarga && hargaDouble <= maxHarga
 
                         cocokAlamat && cocokTipe && cocokHarga
                     }
 
-                    // Terapkan data hasil filter ke adapter tanpa buat objek adapter baru
                     perbaruiTampilanDaftarKos(dataHasilFilter)
 
                     if (dataHasilFilter.isEmpty()) {
@@ -89,22 +82,47 @@ class DashboardFragment : Fragment() {
         return view
     }
 
-    /**
-     * Fungsi untuk memuat data kos awal.
-     * Saat database kelompokmu sudah siap, isi fungsi ini tinggal diganti dengan data dari database / ViewModel!
-     */
-    private fun loadDataDummyAwal() {
-        listSemuaKos.clear()
-        listSemuaKos.add(Kamar("C3", "Campur", 650000.0, "Kosong", "Kos Alinda", "Garut", "WiFi, AC, Kasur"))
-        listSemuaKos.add(Kamar("A1", "Putri", 800000.0, "Kosong", "Kos Syifa", "Bandung", "Kamar Mandi Dalam, WiFi"))
+    private fun ambilDataDariFirebase() {
+        databaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listSemuaKos.clear()
+                if (snapshot.exists()) {
+                    for (kosSnapshot in snapshot.children) {
+                        val namaKos = kosSnapshot.child("namaKos").value.toString()
+                        val hargaKos = kosSnapshot.child("hargaKos").value.toString()
+                        val urlFoto = kosSnapshot.child("urlFoto").value.toString()
+                        val status = kosSnapshot.child("status").value.toString()
 
-        // Tampilkan ke layar
-        perbaruiTampilanDaftarKos(listSemuaKos)
+                        val lokasiAsli = kosSnapshot.child("lokasi").value?.toString() ?: "Bandung"
+
+                        var ownerUid = kosSnapshot.child("ownerUid").value.toString()
+                        if (ownerUid == "null" || ownerUid.trim().isEmpty()) {
+                            ownerUid = kosSnapshot.child(" ownerUid").value.toString()
+                        }
+
+                        val kamar = Kamar(
+                            noKamar = "1",
+                            tipeKamar = "Campur",
+                            hargaSewa = hargaKos,
+                            statusKamar = status,
+                            namaKos = namaKos,
+                            lokasi = lokasiAsli,
+                            fasilitas = "Lengkap",
+                            urlFoto = urlFoto,
+                            ownerUid = ownerUid
+                        )
+                        listSemuaKos.add(kamar)
+                    }
+                    perbaruiTampilanDaftarKos(listSemuaKos)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Gagal memuat: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
-    /**
-     * Fungsi bersih untuk memperbarui data di dalam adapter secara aman
-     */
     private fun perbaruiTampilanDaftarKos(daftarKosBaru: List<Kamar>) {
         kamarAdapter = KamarAdapter(daftarKosBaru) { kamar ->
             val intent = Intent(activity, BookingKosActivity::class.java)

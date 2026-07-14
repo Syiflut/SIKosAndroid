@@ -12,7 +12,7 @@
         android:id="@+id/tvNamaKosBayar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pengajuan Kos Saya"
+        android:text="Nama Kos"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="#333333"/>
@@ -29,20 +29,19 @@
         android:id="@+id/tvStatusBayar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Status"
+        android:text="Status: Menunggu Konfirmasi"
+        android:textColor="#FF9800"
         android:textStyle="bold"
         android:textSize="14sp"
         android:layout_marginTop="4dp"/>
 
     <Button
-        android:id="@+id/btnUlasanPenghuni"
+        android:id="@+id/btnKonfirmasiBayar"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:text="Beri Ulasan &amp; Rating"
-        android:textSize="12sp"
-        android:backgroundTint="#4CAF50"
+        android:layout_height="wrap_content"
+        android:text="Konfirmasi Pembayaran Lunas"
+        android:backgroundTint="#2196F3"
         android:textColor="#FFFFFF"
-        android:visibility="gone"
-        android:layout_marginTop="8dp"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:layout_marginTop="12dp"/>
 </LinearLayout>

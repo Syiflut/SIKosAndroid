@@ -3,112 +3,134 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#F3F7FA"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:gravity="center_horizontal">
 
-        <!-- Judul Halaman -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Formulir Pengajuan Sewa"
-            android:textSize="20sp"
+            android:text="Formulir Sewa &amp; Bayar"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@color/pastel_blue_dark"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Isi data sewa dan unggah bukti transaksi"
+            android:textSize="13sp"
+            android:textColor="#888888"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="24dp"/>
-
-        <!-- Input Tanggal Masuk -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tanggal Mulai Masuk"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="8dp"/>
-
-        <EditText
-            android:id="@+id/etTanggalMasuk"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Contoh: 15-03-2026"
-            android:background="@color/pastel_blue"
-            android:paddingHorizontal="16dp"
-            android:inputType="date"
-            android:layout_marginBottom="20dp"/>
-
-        <!-- Input Durasi Sewa (Bulan) -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Durasi Sewa (Bulan)"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="8dp"/>
-
-        <EditText
-            android:id="@+id/etDurasiSewa"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Masukkan jumlah bulan (misal: 3)"
-            android:background="@color/pastel_blue"
-            android:paddingHorizontal="16dp"
-            android:inputType="number"
-            android:layout_marginBottom="24dp"/>
-
-        <!-- Sesi Upload KTP -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upload Foto KTP Pemohon"
-            android:textStyle="bold"
-            android:textColor="#333333"
-            android:layout_marginBottom="8dp"/>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardUploadKtp"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginBottom="32dp"
-            app:cardCornerRadius="12dp"
-            app:cardBackgroundColor="#F3F8FA"
-            app:cardElevation="0dp">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivPreviewKtp"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@android:drawable/ic_menu_camera"
-                    android:backgroundTint="@color/pastel_blue_dark"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Klik untuk pilih/ambil foto KTP"
-                    android:textColor="#777777"
-                    android:textSize="12sp"
-                    android:layout_marginTop="8dp"/>
+                    android:text="Tanggal Mulai Masuk"
+                    android:textStyle="bold"
+                    android:textColor="#555555"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="6dp"/>
+
+                <EditText
+                    android:id="@+id/etTanggalMasuk"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Contoh: 15-03-2026"
+                    android:paddingHorizontal="14dp"
+                    android:inputType="date"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:backgroundTint="#EBF3F9"
+                    android:layout_marginBottom="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Durasi Sewa (Bulan)"
+                    android:textStyle="bold"
+                    android:textColor="#555555"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="6dp"/>
+
+                <EditText
+                    android:id="@+id/etDurasiSewa"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Masukkan jumlah bulan (misal: 3)"
+                    android:paddingHorizontal="14dp"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:background="@android:drawable/editbox_background_normal"
+                    android:backgroundTint="#EBF3F9"
+                    android:layout_marginBottom="24dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EAEAEA"
+                    android:layout_marginBottom="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Bukti Pembayaran"
+                    android:textStyle="bold"
+                    android:textColor="#555555"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="10dp"/>
+
+                <Button
+                    android:id="@+id/btnPilihBuktiBayar"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="📁 Pilih Bukti Transaksi (Galeri)"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/pastel_pink"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp"
+                    android:layout_marginBottom="12dp"/>
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Tombol Kirim Pengajuan -->
         <Button
-            android:id="@+id/btnKirimBooking"
+            android:id="@+id/btnKirimPengajuan"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="Kirim Pengajuan Sewa"
-            android:backgroundTint="@color/pastel_pink"
-            android:textColor="#333333"
-            android:textStyle="bold" />
+            android:layout_height="52dp"
+            android:text="Kirim Pengajuan Sewa &amp; Bayar"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/pastel_blue_dark"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:cornerRadius="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"/>
 
     </LinearLayout>
 </ScrollView>

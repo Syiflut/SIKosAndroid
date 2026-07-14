@@ -3,31 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F8F9FA">
+    android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Riwayat Sewa &amp; Pembayaran"
-        android:textSize="18sp"
+        android:text="Ulasan &amp; Rating Properti"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#333333"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/black"/>
 
     <TextView
-        android:id="@+id/tvRiwayatKosong"
+        android:id="@+id/tvUlasanKosongPemilik"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kamu belum memiliki riwayat pengajuan sewa."
+        android:text="Belum ada ulasan dari penghuni."
         android:gravity="center"
-        android:textSize="14sp"
-        android:textColor="#777777"
-        android:visibility="gone"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRiwayatSewa"
+        android:id="@+id/rvLihatUlasan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

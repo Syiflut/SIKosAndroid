@@ -32,6 +32,7 @@ class RoomChatActivity : AppCompatActivity() {
 
     private var roomChatId: String? = null
     private var namaKos: String? = null
+    private var ownerUid: String? = null
     private val listPesan = ArrayList<Chat>()
     private lateinit var messageAdapter: MessageAdapter
 
@@ -42,46 +43,38 @@ class RoomChatActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance("https://sikosandroid-default-rtdb.asia-southeast1.firebasedatabase.app").reference
 
-        // Mengambil data ID Room dari halaman sebelumnya
-        roomChatId = intent.getStringExtra("EXTRA_ROOM_ID")
+        val currentUid = auth.currentUser?.uid ?: ""
 
-        // PERBAIKAN: Jika roomChatId null atau kosong karena belum dikirim dari halaman katalog,
-        // otomatis pakai fallback "A1" (node database yang sudah berisi riwayat chat kamu)
-        if (roomChatId.isNullOrEmpty()) {
-            roomChatId = "A1"
+        roomChatId = intent.getStringExtra("EXTRA_ROOM_ID")
+        ownerUid = intent.getStringExtra("OWNER_UID")?.trim()
+        namaKos = intent.getStringExtra("NAMA_KOS")
+
+        if (roomChatId.isNullOrEmpty() && !ownerUid.isNullOrEmpty() && ownerUid != "null") {
+            roomChatId = "${currentUid}_${ownerUid}"
         }
 
-        // Mengambil nama kos dari intent, jika tidak ada default ke "Kos Syifa"
-        namaKos = intent.getStringExtra("NAMA_KOS") ?: "Kos Syifa"
-
-        // Inisialisasi Komponen Sesuai ID XML
         tvNamaRoomChat = findViewById(R.id.tvNamaRoomChat)
         etPesanInput = findViewById(R.id.etPesanInput)
         btnKirimPesan = findViewById(R.id.btnKirimPesan)
         rvPesan = findViewById(R.id.rvPesan)
         tvChatKosong = findViewById(R.id.tvChatKosong)
 
-        // Set header nama kosan
-        tvNamaRoomChat.text = namaKos
+        tvNamaRoomChat.text = namaKos ?: "Chat Percakapan"
 
-        // Setup RecyclerView & Adapter
         rvPesan.layoutManager = LinearLayoutManager(this)
         messageAdapter = MessageAdapter(listPesan)
         rvPesan.adapter = messageAdapter
 
-        // Mulai sinkronisasi pesan secara real-time dari Firebase
         muatPesanDariFirebase()
 
-        // Aksi ketika tombol Kirim ditekan
         btnKirimPesan.setOnClickListener {
-            kirimPesanKeFirebase()
+            kirimPesanKeFirebase(currentUid)
         }
     }
 
     private fun muatPesanDariFirebase() {
         if (roomChatId == null) return
 
-        // Membaca data secara dinamis dari folder: chats -> [roomChatId] -> messages
         database.child("chats").child(roomChatId!!).child("messages")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -109,14 +102,11 @@ class RoomChatActivity : AppCompatActivity() {
             })
     }
 
-    private fun kirimPesanKeFirebase() {
+    private fun kirimPesanKeFirebase(pengirimId: String) {
         val teksPesan = etPesanInput.text.toString().trim()
-        val pengirimId = auth.currentUser?.uid ?: return
 
-        if (teksPesan.isEmpty()) return
-        if (roomChatId == null) return
+        if (teksPesan.isEmpty() || roomChatId == null) return
 
-        // Mengirimkan pesan baru ke node dinamis sesuai room aktif
         val chatRef = database.child("chats").child(roomChatId!!).child("messages").push()
         val chatIdUnique = chatRef.key ?: ""
 
@@ -129,10 +119,35 @@ class RoomChatActivity : AppCompatActivity() {
 
         chatRef.setValue(pesanBaru)
             .addOnSuccessListener {
-                etPesanInput.setText("") // Hapus inputan setelah pesan sukses dikirim
+                etPesanInput.setText("")
+                updateInfoRoomUtama(teksPesan)
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Gagal mengirim pesan: ${e.message}", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun updateInfoRoomUtama(teksTerakhir: String) {
+        val currentUid = auth.currentUser?.uid ?: return
+        if (roomChatId.isNullOrEmpty()) return
+
+        if ((ownerUid.isNullOrEmpty() || ownerUid == "null") && roomChatId!!.contains("_")) {
+            val splitId = roomChatId!!.split("_")
+            if (splitId.size > 1) {
+                ownerUid = if (splitId[0] == currentUid) splitId[1] else splitId[0]
+            }
+        }
+
+        val roomInfoRef = database.child("userRooms").child(roomChatId!!)
+
+        val infoMap = hashMapOf(
+            "roomId" to roomChatId!!,
+            "penghuniId" to (if (currentUid == ownerUid) "" else currentUid),
+            "pemilikId" to (ownerUid ?: ""),
+            "namaPenerima" to (namaKos ?: "User"),
+            "pesanTerakhir" to teksTerakhir,
+            "waktu" to System.currentTimeMillis()
+        )
+        roomInfoRef.setValue(infoMap)
     }
 }

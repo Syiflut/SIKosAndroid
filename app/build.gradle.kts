@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp) // atau kotlin.kapt kalo belum migrasi ke KSP
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    id("com.google.gms.google-services") // yang ini gapapa tetep pake id
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -40,50 +40,40 @@ android {
 }
 
 dependencies {
-    // Firebase Realtime Database & Authentication
-    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
-    implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
-        // Firebase
-        implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-        implementation("com.google.firebase:firebase-auth")
-        implementation("com.google.firebase:firebase-database")
-        implementation("com.google.firebase:firebase-storage")
-
-        // Room
-        implementation("androidx.room:room-runtime:2.6.1")
-        kapt("androidx.room:room-compiler:2.6.1")
-
-
-        // Hilt DI
-        implementation("com.google.dagger:hilt-android:2.51.1")
-        kapt("com.google.dagger:hilt-compiler:2.51.1")
-
-        // Navigation
-        implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-        implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-
-        // AndroidX Core
-        implementation("androidx.core:core-ktx:1.13.1")
-        implementation("androidx.appcompat:appcompat:1.7.0")
-        implementation("com.google.android.material:material:1.12.0")
-    
+    // AndroidX Core & UI Basics
     implementation(libs.androidx.core.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("com.google.android.material:material:1.12.0")
+
+    // Firebase (Menggunakan BoM agar versinya seragam dan aman)
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-storage")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
     // ViewModel + LiveData
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
-    // Room
+    // Room (Konsisten menggunakan KSP dari Version Catalog)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    // Hilt
+    // Hilt (Konsisten menggunakan KSP dari Version Catalog)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-}
 
-fun kapt(string: String) {}
+    // GLIDE (Tambahan untuk memperbaiki error ChatAdapter kamu)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    ksp("com.github.bumptech.glide:ksp:4.16.0")
+
+    // Testing
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+}

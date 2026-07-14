@@ -9,40 +9,39 @@
     android:layout_marginBottom="12dp">
 
     <TextView
-        android:id="@+id/tvNamaKosBayar"
+        android:id="@+id/tvNamaKosSewa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pengajuan Kos Saya"
+        android:text="Nama Kos"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="#333333"/>
 
     <TextView
-        android:id="@+id/tvDetailBayar"
+        android:id="@+id/tvDetailSewa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Detail Pembayaran"
+        android:text="Detail Pengajuan Sewa"
         android:textSize="14sp"
         android:layout_marginTop="4dp"/>
 
     <TextView
-        android:id="@+id/tvStatusBayar"
+        android:id="@+id/tvStatusSewa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Status"
+        android:text="Status: Menunggu Persetujuan"
+        android:textColor="#2196F3"
         android:textStyle="bold"
         android:textSize="14sp"
         android:layout_marginTop="4dp"/>
 
     <Button
-        android:id="@+id/btnUlasanPenghuni"
+        android:id="@+id/btnSetujuiSewa"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:text="Beri Ulasan &amp; Rating"
-        android:textSize="12sp"
-        android:backgroundTint="#4CAF50"
+        android:layout_height="wrap_content"
+        android:text="Setujui Sewa Properti 👍"
+        android:backgroundTint="#2196F3"
         android:textColor="#FFFFFF"
-        android:visibility="gone"
-        android:layout_marginTop="8dp"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:layout_marginTop="12dp"/>
 </LinearLayout>

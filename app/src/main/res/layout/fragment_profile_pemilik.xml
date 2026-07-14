@@ -12,11 +12,10 @@
         android:gravity="center_horizontal"
         android:padding="20dp">
 
-        <!-- FOTO PROFIL (Mengikuti style di emulator) -->
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             app:cardCornerRadius="50dp"
             app:cardElevation="0dp"
             app:cardBackgroundColor="@color/pastel_blue">
@@ -32,21 +31,20 @@
             android:id="@+id/tvProfilNama"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Syifa"
-            android:textSize="18sp"
+            android:text="Nama Pemilik"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="16dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Akun Pemilik Kos"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:textColor="@color/pastel_blue_dark"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="32dp"/>
 
-        <!-- FORM DATA DIRI -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,109 +54,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nomor Handphone"
-                android:textSize="14sp"
-                android:textColor="#777777"/>
-            <TextView
-                android:id="@+id/tvProfilPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="085150783182"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textSize="14sp"
-                android:textColor="#777777"/>
-            <TextView
-                android:id="@+id/tvProfilPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="********"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Email"
                 android:textSize="14sp"
                 android:textColor="#777777"/>
+
             <TextView
                 android:id="@+id/tvProfilEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="syifa@email.com"
+                android:text="email@domain.com"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_marginBottom="16dp"/>
-
-            <!-- VERIFIKASI IDENTITAS MENGGUNAKAN EMOJI TITIK MERAH (Anti Eror) -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Verifikasi Kartu Identitas 🔴"
-                android:textSize="14sp"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Belum ada Foto"
-                android:textSize="16sp"
-                android:textColor="#444444"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="24dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#EAEAEA"
-                android:layout_marginBottom="20dp"/>
-
-            <!-- PENGATURAN AKUN -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pengaturan Akun"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginBottom="16dp"/>
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rekomendasi via email"
-                android:checked="true"
-                android:buttonTint="@color/pastel_blue_dark"
-                android:layout_marginBottom="8dp"/>
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Notifikasi via chat"
-                android:checked="true"
-                android:buttonTint="@color/pastel_blue_dark"
-                android:layout_marginBottom="8dp"/>
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Notifikasi kos via SMS"
-                android:checked="true"
-                android:buttonTint="@color/pastel_blue_dark"
                 android:layout_marginBottom="32dp"/>
 
-            <!-- TOMBOL KELUAR (Warna Pink Pastel Sesuai Project Kelompok) -->
             <Button
                 android:id="@+id/btnKeluar"
                 android:layout_width="match_parent"
@@ -167,6 +76,7 @@
                 android:textColor="@color/black"
                 android:backgroundTint="@color/pastel_pink"
                 android:textStyle="bold"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="20dp"/>
 
         </LinearLayout>

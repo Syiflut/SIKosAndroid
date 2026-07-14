@@ -4,11 +4,11 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class RoomChat(
-    val roomId: String = "",
-    val penghuniId: String = "",
-    val pemilikId: String = "",
-    val namaPenerima: String = "",
-    val pesanTerakhir: String = "",
-    val waktu: Long = 0L, // Pake Long biar bisa di-sort
-    val role: String = ""
+    var roomId: String = "",
+    var penghuniId: String = "",
+    var pemilikId: String = "",
+    var namaPenerima: String = "",
+    var pesanTerakhir: String = "",
+    var waktu: Long = 0L,
+    var role: String = ""
 )
