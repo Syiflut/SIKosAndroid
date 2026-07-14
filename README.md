@@ -24,9 +24,14 @@ Yuk, tonton demonstrasi lengkap jalannya aplikasi SIKosAndroid pada tautan di ba
 ## 📸 Screenshot Aplikasi
 Berikut adalah beberapa tampilan antarmuka dari aplikasi SIKosAndroid:
 
-| Halaman Utama (Dashboard) |
+| Halaman Login Penghuni & Pemilik Kos |
+<img width="446" height="900" alt="WhatsApp Image 2026-07-14 at 22 04 36 (1)" src="https://github.com/user-attachments/assets/23b68694-9f1d-4b45-864c-7daf2571e37f" />
 
-| ![Dashboard](  ) | ![Room Chat](  ) |
+| Halaman Dashboard Penghuni | 
+<img width="437" height="900" alt="WhatsApp Image 2026-07-14 at 22 04 37" src="https://github.com/user-attachments/assets/d4f90d20-a0dc-4037-8d31-041ef44ba9d9" />
+
+| Halaman Dashboard Penghuni |
+<img width="428" height="900" alt="WhatsApp Image 2026-07-14 at 22 04 36" src="https://github.com/user-attachments/assets/0b62c363-a167-4b1f-9d5a-fe10b0f89d54" />
 
 ---
 
