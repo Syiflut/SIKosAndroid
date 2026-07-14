@@ -34,7 +34,7 @@ Berikut adalah beberapa tampilan antarmuka dari aplikasi SIKosAndroid:
 <img width="1600" height="900" alt="WhatsApp Image 2026-07-14 at 21 02 39" src="https://github.com/user-attachments/assets/de987736-5929-477f-8e1d-50ca71c889e1" />
 
 
-| Halaman Dashboard Penghuni |
+| Halaman Dashboard Pemilik Kos |
 
 <img width="1600" height="900" alt="WhatsApp Image 2026-07-14 at 21 03 34" src="https://github.com/user-attachments/assets/4debc34d-87c8-4dba-9f3a-b891cd10250a" />
 
