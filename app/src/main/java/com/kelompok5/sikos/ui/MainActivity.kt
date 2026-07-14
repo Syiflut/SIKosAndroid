@@ -14,32 +14,64 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        // Tangkap kiriman nama secara aman tanpa mengganggu pemanggilan fragment awal
+        // 1. Tangkap kiriman ROLE dari LoginActivity (Default-nya PENGHUNI jika tidak terdeteksi)
+        val userRole = intent.getStringExtra("EXTRA_ROLE") ?: "PENGHUNI"
         val namaUser = intent.getStringExtra("EXTRA_NAMA") ?: "Pengguna"
 
-        // Buat objek fragment dan bungkus nama ke arguments
-        val dashboardFragment = DashboardFragment()
-        val bundle = Bundle()
-        bundle.putString("KEY_NAMA", namaUser)
-        dashboardFragment.arguments = bundle
+        // 2. Tentukan halaman utama yang muncul pertama kali sesuai ROLE
+        // ... di dalam onCreate MainActivity.kt ...
 
-        // Memuat halaman awal bawaan asli dengan membawa data nama baru
-        loadFragment(dashboardFragment)
+// Tentukan halaman utama yang muncul pertama kali sesuai ROLE
+        if (userRole == "PEMILIK") {
+            val dashboardPemilikFragment = DashboardPemilikFragment()
+            val bundle = Bundle()
+            bundle.putString("KEY_NAMA", namaUser) // Mengirim nama asli dari Firebase
+            dashboardPemilikFragment.arguments = bundle
+            loadFragment(dashboardPemilikFragment)
+        } else {
+            val dashboardFragment = DashboardFragment()
+            val bundle = Bundle()
+            bundle.putString("KEY_NAMA", namaUser)
+            dashboardFragment.arguments = bundle
+            loadFragment(dashboardFragment)
+        }
 
+        // 3. Atur Navigasi Menu Bawah agar tidak tertukar saat diklik
         bottomNavigation.setOnItemSelectedListener { item ->
             val fragment: Fragment = when (item.itemId) {
                 R.id.menu_dashboard -> {
-                    // Pastikan saat tab dashboard diklik ulang, nama tetap terbawa
-                    val newDashboard = DashboardFragment()
-                    val newBundle = Bundle()
-                    newBundle.putString("KEY_NAMA", namaUser)
-                    newDashboard.arguments = newBundle
-                    newDashboard
+                    if (userRole == "PEMILIK") {
+                        DashboardPemilikFragment()
+                    } else {
+                        val newDashboard = DashboardFragment()
+                        val newBundle = Bundle()
+                        newBundle.putString("KEY_NAMA", namaUser)
+                        newDashboard.arguments = newBundle
+                        newDashboard
+                    }
                 }
-                R.id.menu_riwayat -> RiwayatFragment()
-                R.id.menu_chat -> ChatFragment()
-                R.id.menu_profil -> ProfilFragment()
-                else -> DashboardFragment()
+                R.id.menu_riwayat -> {
+                    if (userRole == "PEMILIK") {
+                        RiwayatPemilikFragment() // Membuka riwayat pendapatan pemilik kos
+                    } else {
+                        RiwayatFragment() // Membuka riwayat pembayaran milik penghuni bawaan temanmu
+                    }
+                }
+                R.id.menu_chat -> {
+                    if (userRole == "PEMILIK") {
+                        ChatPemilikFragment() // Sekarang baris ini sudah aman & aktif!
+                    } else {
+                        ChatFragment() // Milik penghuni punya temanmu tetap aman
+                    }
+                }
+                R.id.menu_profil -> {
+                    if (userRole == "PEMILIK") {
+                        ProfilePemilikFragment() // Membuka profil pemilik buatanmu
+                    } else {
+                        ProfilFragment() // Mengarah ke kelas profil penghuni bawaan temanmu
+                    }
+                }
+                else -> if (userRole == "PEMILIK") DashboardPemilikFragment() else DashboardFragment()
             }
             loadFragment(fragment)
             true
