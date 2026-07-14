@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:drawable/dialog_holo_light_frame"
+    android:backgroundTint="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/tvNamaKosSewa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Kos"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#333333"/>
+
+    <TextView
+        android:id="@+id/tvDetailSewa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detail Pengajuan Sewa"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"/>
+
+    <TextView
+        android:id="@+id/tvStatusSewa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status: Menunggu Persetujuan"
+        android:textColor="#2196F3"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"/>
+
+    <Button
+        android:id="@+id/btnSetujuiSewa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Setujui Sewa Properti 👍"
+        android:backgroundTint="#2196F3"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:layout_marginTop="12dp"/>
+</LinearLayout>

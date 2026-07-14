@@ -1,70 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="4dp"
-    android:layout_marginVertical="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp"
-    app:cardBackgroundColor="#FFFFFF">
+    android:background="@android:drawable/dialog_holo_light_frame"
+    android:backgroundTint="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvNamaKosBayar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical">
+        android:text="Pengajuan Kos Saya"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#333333"/>
 
-        <!-- Info Transaksi -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvDetailBayar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detail Pembayaran"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"/>
 
-            <TextView
-                android:id="@+id/tvRiwayatNamaKos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kos Alinda"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#333333"/>
+    <TextView
+        android:id="@+id/tvStatusBayar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"/>
 
-            <TextView
-                android:id="@+id/tvRiwayatTanggal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pembayaran: 15 Mar 2026"
-                android:textSize="12sp"
-                android:textColor="#777777"
-                android:layout_marginTop="2dp"/>
-
-            <TextView
-                android:id="@+id/tvRiwayatTotalHarga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total: Rp 1.950.000 (3 Bulan)"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="#333333"
-                android:layout_marginTop="6dp"/>
-        </LinearLayout>
-
-        <!-- Tag Status (Lunas / Menunggu / Gagal) -->
-        <TextView
-            android:id="@+id/tvStatusPembayaran"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lunas"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:background="#FFD1DC"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp" />
-
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/btnUlasanPenghuni"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="Beri Ulasan &amp; Rating"
+        android:textSize="12sp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="false"/>
+</LinearLayout>

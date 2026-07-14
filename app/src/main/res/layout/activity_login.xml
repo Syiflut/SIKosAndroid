@@ -1,31 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:padding="32dp"
+    android:gravity="center"
+    android:background="#FAF8F6">
 
+    <!-- Judul Aplikasi -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SiKos"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#7BB3FF"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temukan dan kelola kosanmu"
+        android:textSize="14sp"
+        android:textColor="#A0A0A0"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Pilihan Role -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="Masuk sebagai:"
+        android:textSize="14sp"
+        android:textColor="#777777"
+        android:layout_marginBottom="8dp"/>
+
+    <RadioGroup
+        android:id="@+id/rgRole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/rbPenghuni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penghuni"
+            android:checked="true"
+            android:buttonTint="#FFB6C1"
+            android:textColor="#555555"
+            android:layout_marginEnd="24dp"/>
+
+        <RadioButton
+            android:id="@+id/rbPemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pemilik Kos"
+            android:buttonTint="#7BB3FF"
+            android:textColor="#555555"/>
+    </RadioGroup>
+
+    <!-- Kolom Email -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:hint="Email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="16dp"
+        android:textSize="15sp"
+        android:background="@android:drawable/edit_text"
+        android:backgroundTint="#F0F4F8"/>
 
+    <!-- Eror Real-time Email -->
+    <TextView
+        android:id="@+id/tvErrorEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FF6B6B"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        android:paddingHorizontal="4dp"
+        android:visibility="gone"/>
+
+    <!-- Kolom Password -->
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="16dp"
+        android:textSize="15sp"
+        android:background="@android:drawable/edit_text"
+        android:backgroundTint="#F0F4F8"/>
 
+    <!-- Eror Real-time Password -->
+    <TextView
+        android:id="@+id/tvErrorPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FF6B6B"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        android:paddingHorizontal="4dp"
+        android:visibility="gone"/>
+
+    <!-- Tombol Login -->
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
         android:text="Login"
-        android:layout_marginTop="24dp"/>
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#93C5FD"
+        app:cornerRadius="12dp"/>
+
+    <!-- Tombol Pindah ke Halaman Daftar -->
+    <TextView
+        android:id="@+id/tvDaftarAkun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Belum punya akun? Buat Akun"
+        android:textSize="14sp"
+        android:textColor="#FFB6C1"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:padding="8dp"/>
 
 </LinearLayout>

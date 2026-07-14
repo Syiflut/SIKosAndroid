@@ -3,25 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#F8F9FA">
 
-    <!-- Judul Halaman -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Riwayat Sewa &amp; Pembayaran"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/pastel_blue_dark"
+        android:textColor="#333333"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Daftar Riwayat Transaksi -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvRiwayatPembayaran"
+    <TextView
+        android:id="@+id/tvRiwayatKosong"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:scrollbars="vertical"/>
+        android:layout_height="wrap_content"
+        android:text="Kamu belum memiliki riwayat pengajuan sewa."
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="#777777"
+        android:visibility="gone"
+        android:layout_marginTop="40dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRiwayatSewa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

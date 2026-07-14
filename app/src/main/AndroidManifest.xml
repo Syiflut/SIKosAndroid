@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".SIKosApp"
         android:allowBackup="true"
@@ -13,39 +15,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SIKosAndroid">
 
-        <!-- 1. Halaman Login (Awal Aplikasi Dibuka) -->
-        <activity android:name=".feature_auth.LoginActivity"
+        <activity
+            android:name=".feature_auth.LoginActivity"
             android:exported="true">
-            <meta-data
-                android:name="android.app.searchable"
-                android:value="true" />
-            <meta-data
-                android:name="android.app.taskAffinity"
-                android:value=".SIKosApp" />
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".SIKosApp" />
-            <meta-data
-                android:name="android.support.PARENT_STACKS"
-                android:value="true" />
-            <meta-data
-                android:name="android.support.PARENT_AS_ROOT"
-                android:value="true" />
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- 2. Halaman Formulir Pengajuan Sewa -->
         <activity
-            android:name=".ui.BookingKosActivity"
+            android:name=".BookingKosActivity"
             android:exported="false" />
 
-        <!-- 3. Halaman Utama Navigasi Bawah (Dashboard, Riwayat, Profil) -->
         <activity
             android:name=".ui.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".feature_auth.RegisterActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.RoomChatActivity"
             android:exported="false" />
 
     </application>

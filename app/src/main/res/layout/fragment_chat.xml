@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FAFAFA"
+    android:padding="16dp">
+
+    <!-- Header Chat -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pesan &amp; Obrolan"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Info Kosong jika Belum Ada Chat -->
+    <TextView
+        android:id="@+id/tvChatKosong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Belum ada obrolan aktif"
+        android:textColor="#888888"
+        android:visibility="gone"
+        android:padding="24dp"/>
+
+    <!-- Tempat List Chat / Daftar Kontak Pemilik Kos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDaftarChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/item_chat" />
+
+</LinearLayout>
