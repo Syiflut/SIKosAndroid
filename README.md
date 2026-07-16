@@ -17,8 +17,7 @@ Sistem Informasi Manajemen dan Pemesanan Kamar Kos berbasis mobile Android. Apli
 
 ## 🎥 Video Penjelasan Proyek
 Yuk, tonton demonstrasi lengkap jalannya aplikasi SIKosAndroid pada tautan di bawah ini:
-👉 [Link Video Demo & Penjelasan SIKosAndroid](   )
-
+👉 [ https://drive.google.com/drive/folders/1pJsZvaQeU7eb1no8v_r_hpu640uLI9hR ]
 ---
 
 ## 📸 Screenshot Aplikasi
